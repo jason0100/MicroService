@@ -1,3 +1,4 @@
+using API_Gateway.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -29,7 +30,7 @@ namespace API_Gateway
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-		public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+		public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IHostApplicationLifetime appLifetime)
 		{
 			if (env.IsDevelopment())
 			{
@@ -46,6 +47,19 @@ namespace API_Gateway
 			{
 				endpoints.MapControllers();
 			});
+			appLifetime.ApplicationStarted.Register(OnStarted);
+			appLifetime.ApplicationStopped.Register(OnStopped);
+
+			
+		}
+		private void OnStopped()
+		{
+			RabbitMQListener.Stop();
+		}
+
+		private void OnStarted()
+		{
+			RabbitMQListener.Start();
 		}
 	}
 }
