@@ -32,12 +32,12 @@ namespace SayHelloService2
 				//把交換機設定成Direct模式 有對應的routeKey才能接收訊息
 				channel.ExchangeDeclare(exchangeName, ExchangeType.Direct, durable: true);
 				//訊息佇列名稱
-				string queueName = "hello1";
+				string queueName = "hello2";
 				//宣告佇列
 				channel.QueueDeclare(queueName, durable: true, exclusive: false, autoDelete: false, arguments: null);//聲明消息隊列，且為可持久化的
 
 				//將佇列與交換機進行繫結
-				string routeKey = "key1"; //匹配的key，
+				string routeKey = "key2"; //匹配的key，
 
 				channel.QueueBind(queueName, exchangeName, routeKey, null);
 				var consumer = new EventingBasicConsumer(channel);

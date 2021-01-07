@@ -24,10 +24,10 @@ namespace SayHelloService
 				//宣告交換機+持久化設定
 				channel.ExchangeDeclare(exchangeName, ExchangeType.Direct, durable: true);
 				//訊息佇列名稱
-				string queueName = "Hello2";
+				string queueName = "hello1";
 				//宣告佇列
 				channel.QueueDeclare(queueName, durable: true, exclusive: false, autoDelete: false, arguments: null);//聲明消息隊列，且為可持久化的
-				string routeKey = "key2"; //匹配的key，
+				string routeKey = "key1"; //匹配的key，
 										  //將佇列與交換機進行繫結
 				channel.QueueBind(queueName, exchangeName, routeKey, null);
 

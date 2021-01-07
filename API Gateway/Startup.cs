@@ -50,7 +50,7 @@ namespace API_Gateway
 			appLifetime.ApplicationStarted.Register(OnStarted);
 			appLifetime.ApplicationStopped.Register(OnStopped);
 
-			
+
 		}
 		private void OnStopped()
 		{

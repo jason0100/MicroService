@@ -28,7 +28,7 @@ namespace API_Gateway.Controllers
 					string exchangeName = "exchange1";//交換機名稱
 													  //把交換機設定成fanout釋出訂閱模式
 													  //channel.ExchangeDeclare(exchangeName, type: "fanout");
-					string routeKey = "key1"; //匹配的key，
+					string routeKey = "key2"; //匹配的key，
 
 					//把交換機設定成Direct模式 有對應的routeKey才能接收訊息+持久化設定
 					channel.ExchangeDeclare(exchangeName, ExchangeType.Direct, durable: true);
